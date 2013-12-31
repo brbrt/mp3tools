@@ -33,7 +33,7 @@ namespace MP3Tools
 
         public string Analyze(string fileName)
         {
-            string newFileName = GetNewFileName(fileName);
+            string newFileName = SuggestNiceFileName(fileName);
 
 
             SongInfo songInfo = GetArtistTitleFromFileName(newFileName);
@@ -47,36 +47,7 @@ namespace MP3Tools
             return newFileName;
         }
 
-
-        //public static void Process(FileItem fi)
-        //{
-        //    if (fi.Processed == ProcessState.NotYet)
-        //    {
-        //        string newFileName = GetNewFileName(fi.FullPath);
-
-        //        fi.NewName = newFileName;
-
-
-        //        string newFullPath = RenameFile(fi.FullPath, newFileName + ".mp3");
-                
-
-        //        string artist, title;
-
-        //        GetArtistTitleFromFileName(newFileName, out artist, out title);
-
-
-        //        if (currentSettings.SetID3Tags)
-        //        {
-        //            SetArtistAndTitleTags(newFullPath, artist, title);
-        //        }
-
-                
-
-        //        fi.Processed = ProcessState.Done;
-        //    }
-        //}
-
-        private string GetNewFileName(string originalName)
+        private string SuggestNiceFileName(string originalName)
         {
             string file = Path.GetFileNameWithoutExtension(originalName);
 
@@ -90,9 +61,9 @@ namespace MP3Tools
                 current = elements[i];
 
                 bool contains = false;
-                foreach (string minta in settings.PatternsToFind)
+                foreach (string pattern in settings.PatternsToFind)
                 {
-                    if (current.Contains(minta))
+                    if (current.Contains(pattern))
                     {
                         contains = true;
                         break;
@@ -118,9 +89,9 @@ namespace MP3Tools
 
         private string RenameFile(string originalFullPath, string newFileName)
         {
-            string mappa = Path.GetDirectoryName(originalFullPath);
+            string directory = Path.GetDirectoryName(originalFullPath);
 
-            string newFullPath = Path.Combine(mappa, newFileName);
+            string newFullPath = Path.Combine(directory, newFileName);
 
             File.Move(originalFullPath, newFullPath);
 

@@ -29,12 +29,16 @@ namespace MP3Tools
                 _lookup[c] = true;
             }
 
+
+            // TODO: make it configurable.
             _lookup[' '] = true;
             _lookup['_'] = true;
             _lookup['-'] = true;
             _lookup['('] = true;
             _lookup[')'] = true;
             _lookup['&'] = true;
+            _lookup['.'] = true;
+            _lookup[','] = true;
         }
 
 

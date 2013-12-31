@@ -17,6 +17,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.Windows.Threading;
 using System.Collections;
+using System.Threading.Tasks;
 
 namespace MP3Tools
 {
@@ -37,32 +38,51 @@ namespace MP3Tools
             listView1.DataContext = fileItems;
         }
 
-        private void Window_Drop(object sender, DragEventArgs e)
+        private async void Window_Drop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] droppedItems = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                DroppedFilesProcessor dfp = new DroppedFilesProcessor();
-                IList<string> mp3Files = dfp.Process(droppedItems);
+                // Process the dropped files in the background.
+                Task<IList<FileItem>> task = Task.Run<IList<FileItem>>(() => RunAnalyzeDroppedFiles(droppedItems));
+                IList<FileItem> taskResult = await task;
 
 
-                
-
-                foreach (string mp3File in mp3Files)
+                // Check the dropped files, we worry about only the new ones (previously dropped files won't be displayed again).
+                foreach (FileItem item in taskResult)
                 {
-                    if (!fileItems.ContainsAlready(mp3File))
+                    if (!fileItems.Contains(item))
                     {
-                        FileItem fi = new FileItem(mp3File);
-                        fileItems.Add(fi);
+                        fileItems.Add(item);
                     }
                 }
-
-
-
-                FileNameAnalyzer fna = new FileNameAnalyzer();
-                fna.AnalyzeAll(mp3Files);
             }
+        }
+
+        private IList<FileItem> RunAnalyzeDroppedFiles(IList<string> droppedFiles)
+        {
+            // Select all files recursiveley, but only the MP3 files.
+            DroppedFilesProcessor dfp = new DroppedFilesProcessor();
+            IList<string> mp3Files = dfp.Process(droppedFiles);
+
+
+
+            // Analyze all MP3-s and suggest a nice new filename.
+
+            FileNameAnalyzer fna = new FileNameAnalyzer();
+
+            IList<FileItem> result = new List<FileItem>();
+
+            foreach (string file in mp3Files)
+            {
+                string newName = fna.Analyze(file);
+
+                FileItem fileItem = new FileItem() { FullPath = file, NewName = newName, Processed = ProcessState.NotYet };
+                result.Add(fileItem);
+            }
+
+            return result;
         }
 
         private void label1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
