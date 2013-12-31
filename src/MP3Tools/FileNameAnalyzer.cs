@@ -18,19 +18,33 @@ namespace MP3Tools
         }
 
 
-        public void AnalyzeAll(IList<string> fileNames)
+        public List<string> AnalyzeAll(IList<string> fileNames)
         {
+            List<string> result = new List<string>();
+
             foreach (string fileName in fileNames)
             {
-                Analyze(fileName);
+                string newFileName = Analyze(fileName);
+                result.Add(newFileName);
             }
+
+            return result;
         }
 
-        public void Analyze(string fileName)
+        public string Analyze(string fileName)
         {
             string newFileName = GetNewFileName(fileName);
 
+
+            SongInfo songInfo = GetArtistTitleFromFileName(newFileName);
+            newFileName = String.Format("{0}{1}{2}{1}{3}", songInfo.Artist, 
+                                            settings.NewSeparator, 
+                                            Constants.ARTIST_TITLE_SEPARATOR,
+                                            songInfo.Title);
+
             Console.WriteLine(newFileName);
+
+            return newFileName;
         }
 
 
@@ -66,7 +80,7 @@ namespace MP3Tools
         {
             string file = Path.GetFileNameWithoutExtension(originalName);
 
-            string[] elements = file.Split(settings.SeparatorsToFind);
+            string[] elements = file.Split(settings.SeparatorsToFind, StringSplitOptions.RemoveEmptyEntries);
 
             StringBuilder sb = new StringBuilder(file.Length);
 
@@ -113,22 +127,24 @@ namespace MP3Tools
             return newFullPath;
         }
 
-        public static void GetArtistTitleFromFileName(string fileName, out string artist, out string title)
+        public static SongInfo GetArtistTitleFromFileName(string fileName)
         {
-            artist = String.Empty;
-            title = String.Empty;
+            string artist = null;
+            string title = null;
 
-            string[] elements = fileName.Split(new char[] { '-' });
-            
-            artist = elements[0];
+            char[] separator = { Constants.ARTIST_TITLE_SEPARATOR };
+            string[] elements = fileName.Split(separator, 2);
 
-            for (int i = 1; i < elements.Length; i++)
+            artist = elements[0].Trim();
+
+            if (elements.Length > 1)
             {
-                title += elements[1];
+                title = elements[1].Trim();
             }
             
-            artist = artist.Trim();
-            title = title.Trim();
+
+            SongInfo songInfo = new SongInfo(artist, title);
+            return songInfo;
         }
 
         private static void SetArtistAndTitleTags(string fileName, string artist, string title)

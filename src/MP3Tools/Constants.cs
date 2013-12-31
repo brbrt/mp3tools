@@ -8,5 +8,7 @@ namespace MP3Tools
     public class Constants
     {
         public static readonly string MP3_EXTENSION = ".mp3";
+
+        public static readonly char ARTIST_TITLE_SEPARATOR = '-';
     }
 }

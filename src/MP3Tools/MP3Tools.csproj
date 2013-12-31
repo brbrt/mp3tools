@@ -93,6 +93,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="SettingsManager.cs" />
+    <Compile Include="SongInfo.cs" />
     <Compile Include="WRKR.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
