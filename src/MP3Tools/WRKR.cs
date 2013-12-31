@@ -39,45 +39,45 @@ namespace MP3Tools
         {
             StringBuilder logMessage = new StringBuilder();
 
-            while (isRunning)
-            {
-                if (queue.IsEmpty)
-                {
-                    if (logMessage.Length > 0)
-                    {
-                        SaveLog(logMessage.ToString());
-                        logMessage.Clear();
-                    }
+            //while (isRunning)
+            //{
+            //    if (queue.IsEmpty)
+            //    {
+            //        if (logMessage.Length > 0)
+            //        {
+            //            SaveLog(logMessage.ToString());
+            //            logMessage.Clear();
+            //        }
 
-                    Thread.Sleep(25);
-                }
-                else
-                {
-                    FileItem fi;
-                    if (queue.TryDequeue(out fi))
-                    {
-                        try
-                        {
-                            ProcessMP3.Process(fi);
-                        }
-                        catch (Exception ex)
-                        {
-                            fi.Processed = ProcessState.Error;
-                            fi.NewName = "ERROR: " + ex.Message;
-                        }
+            //        Thread.Sleep(25);
+            //    }
+            //    else
+            //    {
+            //        FileItem fi;
+            //        if (queue.TryDequeue(out fi))
+            //        {
+            //            try
+            //            {
+            //                FileNameAnalyzer.Process(fi);
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                fi.Processed = ProcessState.Error;
+            //                fi.NewName = "ERROR: " + ex.Message;
+            //            }
 
 
-                        //LOG
-                        logMessage.Append("Original name: " + fi.FileName + "\n");
-                        logMessage.Append("New name     : " + fi.NewName + "\n");
-                        logMessage.Append("Status: " + fi.Processed + "\n");
-                        logMessage.Append("Path: " + fi.Path + "\n");
-                        logMessage.Append("@" + DateTime.Now.ToString() + "\n");
-                        logMessage.Append("------------------------------------------------------------\n");
-                    }
+            //            //LOG
+            //            logMessage.Append("Original name: " + fi.FileName + "\n");
+            //            logMessage.Append("New name     : " + fi.NewName + "\n");
+            //            logMessage.Append("Status: " + fi.Processed + "\n");
+            //            logMessage.Append("Path: " + fi.Path + "\n");
+            //            logMessage.Append("@" + DateTime.Now.ToString() + "\n");
+            //            logMessage.Append("------------------------------------------------------------\n");
+            //        }
 
-                }
-            }
+            //    }
+            //}
         }
 
         private static void SaveLog(string message)

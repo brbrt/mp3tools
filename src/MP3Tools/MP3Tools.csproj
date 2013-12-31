@@ -85,12 +85,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Constants.cs" />
     <Compile Include="FileItem.cs" />
     <Compile Include="FileItemList.cs" />
     <Compile Include="Helper\FileHelper.cs" />
-    <Compile Include="ProcessMP3.cs" />
+    <Compile Include="FileNameAnalyzer.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="ManipulateStrings.cs" />
+    <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="SettingsManager.cs" />
     <Compile Include="WRKR.cs" />
     <Page Include="MainWindow.xaml">

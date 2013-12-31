@@ -10,7 +10,7 @@ namespace MP3Tools
     {
         public bool ContainsAlready(string fileName)
         {
-            bool tartalmazza = false;
+            bool contains = false;
 
             lock (this)
             {
@@ -18,13 +18,13 @@ namespace MP3Tools
                 {
                     if (fi.FullPath == fileName)
                     {
-                        tartalmazza = true;
+                        contains = true;
                         break;
                     }
                 }
             }
 
-            return tartalmazza;
+            return contains;
         }
     }
 }

@@ -9,9 +9,6 @@ namespace MP3Tools
 {
     public class DroppedFilesProcessor
     {
-        public static readonly string MP3_EXTENSION = ".mp3";
-
-
         public List<string> Process(IList<string> droppedFiles)
         {
             // Select all dropped files.
@@ -33,7 +30,7 @@ namespace MP3Tools
             }
 
             // We only want to work with MP3 files, other fiels will be ignored.
-            List<string> mp3Files = FileHelper.SelectFilesWithExtension(allFiles, MP3_EXTENSION);
+            List<string> mp3Files = FileHelper.SelectFilesWithExtension(allFiles, Constants.MP3_EXTENSION);
 
             return mp3Files;
         }

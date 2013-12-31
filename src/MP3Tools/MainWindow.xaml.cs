@@ -46,16 +46,20 @@ namespace MP3Tools
                 DroppedFilesProcessor dfp = new DroppedFilesProcessor();
                 IList<string> mp3Files = dfp.Process(droppedItems);
 
-                foreach (string mp3File in mp3Files)
-                {
-                    if (!fileItems.ContainsAlready(mp3File))
-                    {
-                        FileItem fi = new FileItem(mp3File);
-                        fileItems.Add(fi);
 
-                        WRKR.AddItem(fi);
-                    }
-                }
+                FileNameAnalyzer fna = new FileNameAnalyzer();
+                fna.AnalyzeAll(mp3Files);
+
+                //foreach (string mp3File in mp3Files)
+                //{
+                //    if (!fileItems.ContainsAlready(mp3File))
+                //    {
+                //        FileItem fi = new FileItem(mp3File);
+                //        fileItems.Add(fi);
+
+                //        WRKR.AddItem(fi);
+                //    }
+                //}
             }
         }
 

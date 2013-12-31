@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 
-namespace MP3Tools
+namespace MP3Tools.Helper
 {
-    public class ManipulateStrings
+    public class StringHelper
     {
         private static bool[] _lookup;
 
-        static ManipulateStrings()
+        static StringHelper()
         {
             _lookup = new bool[65535];
 
@@ -35,6 +35,7 @@ namespace MP3Tools
             _lookup['('] = true;
             _lookup[')'] = true;
             _lookup['&'] = true;
+            _lookup['.'] = true;
         }
 
 
