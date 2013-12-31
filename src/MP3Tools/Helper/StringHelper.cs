@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 
-namespace MP3Tools.Helper
+namespace MP3Tools
 {
     public class StringHelper
     {
@@ -35,7 +35,6 @@ namespace MP3Tools.Helper
             _lookup['('] = true;
             _lookup[')'] = true;
             _lookup['&'] = true;
-            _lookup['.'] = true;
         }
 
 

@@ -88,16 +88,18 @@ namespace MP3Tools
                 if (!contains)
                 {
                     if (i != 0)
+                    {
                         sb.Append(settings.NewSeparator);
+                    }
 
                     sb.Append(current);
                 }
             }
 
-            string ekezetekNelkul = StringHelper.ReplaceAccents(sb.ToString());
-            string specialisKarakterekNelkul = StringHelper.RemoveSpecialCharacters(ekezetekNelkul);
+            string withoutAccents = StringHelper.ReplaceAccents(sb.ToString());
+            string withoutSpecialCharacters = StringHelper.RemoveSpecialCharacters(withoutAccents);
 
-            return specialisKarakterekNelkul;
+            return withoutSpecialCharacters;
         }
 
         private string RenameFile(string originalFullPath, string newFileName)

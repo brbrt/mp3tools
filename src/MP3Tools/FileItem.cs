@@ -18,6 +18,16 @@ namespace MP3Tools
         private string newName;
 
 
+        public FileItem() {}
+
+        public FileItem(string fileName)
+        {
+            FullPath = fileName;
+            Processed = ProcessState.NotYet;
+            NewName = String.Empty;
+        }
+
+
         public string FullPath
         {
             get
@@ -29,16 +39,6 @@ namespace MP3Tools
                 fullPath = value;
                 OnPropertyChanged("FullPath");
             }
-        }
-
-        public string FileName
-        {
-            get { return System.IO.Path.GetFileNameWithoutExtension(fullPath); }
-        }
-
-        public string Path
-        {
-            get { return System.IO.Path.GetDirectoryName(fullPath); }
         }
 
         public ProcessState Processed
@@ -68,11 +68,14 @@ namespace MP3Tools
         }
 
 
-        public FileItem(string fileName)
+        public string FileName
         {
-            FullPath = fileName;
-            Processed = ProcessState.NotYet;
-            NewName = String.Empty;
+            get { return System.IO.Path.GetFileNameWithoutExtension(fullPath); }
+        }
+
+        public string Path
+        {
+            get { return System.IO.Path.GetDirectoryName(fullPath); }
         }
 
 
