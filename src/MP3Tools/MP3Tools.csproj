@@ -56,11 +56,11 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\JSON.Net\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\lib\json.net\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="policy.2.0.taglib-sharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\policy.2.0.taglib-sharp.dll</HintPath>
+      <HintPath>..\..\lib\taglib-sharp\policy.2.0.taglib-sharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -74,7 +74,7 @@
     </Reference>
     <Reference Include="taglib-sharp, Version=2.0.4.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\taglib-sharp.dll</HintPath>
+      <HintPath>..\..\lib\taglib-sharp\taglib-sharp.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -124,7 +124,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Libraries\policy.2.0.taglib-sharp.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -134,11 +133,6 @@
   <ItemGroup>
     <Resource Include="mp3tools.ico" />
     <Resource Include="Images\463104592.png" />
-    <Content Include="Libraries\JSON.Net\Newtonsoft.Json.dll" />
-    <Content Include="Libraries\JSON.Net\Newtonsoft.Json.pdb" />
-    <Resource Include="Libraries\JSON.Net\Newtonsoft.Json.xml" />
-    <Content Include="Libraries\policy.2.0.taglib-sharp.dll" />
-    <Content Include="Libraries\taglib-sharp.dll" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
