@@ -39,18 +39,22 @@ namespace MP3Tools
 
         private void Window_Drop(object sender, DragEventArgs e)
         {
-            string[] droppedItems = (string[])e.Data.GetData(DataFormats.FileDrop);
-
-            List<string> mp3Files = ProcessDroppedFiles.GetAllMP3(droppedItems);
-
-            foreach (string mp3File in mp3Files)
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                if (!fileItems.ContainsAlready(mp3File))
-                {
-                    FileItem fi = new FileItem(mp3File);
-                    fileItems.Add(fi);
+                string[] droppedItems = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                    WRKR.AddItem(fi);
+                DroppedFilesProcessor dfp = new DroppedFilesProcessor();
+                IList<string> mp3Files = dfp.Process(droppedItems);
+
+                foreach (string mp3File in mp3Files)
+                {
+                    if (!fileItems.ContainsAlready(mp3File))
+                    {
+                        FileItem fi = new FileItem(mp3File);
+                        fileItems.Add(fi);
+
+                        WRKR.AddItem(fi);
+                    }
                 }
             }
         }

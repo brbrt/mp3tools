@@ -87,6 +87,7 @@
     </ApplicationDefinition>
     <Compile Include="FileItem.cs" />
     <Compile Include="FileItemList.cs" />
+    <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="ProcessMP3.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ManipulateStrings.cs" />
@@ -106,7 +107,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProcessDroppedFiles.cs" />
+    <Compile Include="DroppedFilesProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
