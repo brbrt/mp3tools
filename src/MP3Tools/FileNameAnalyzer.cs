@@ -36,13 +36,12 @@ namespace MP3Tools
             string newFileName = SuggestNiceFileName(fileName);
 
 
-            SongInfo songInfo = GetArtistTitleFromFileName(newFileName);
-            newFileName = String.Format("{0}{1}{2}{1}{3}", songInfo.Artist, 
+            SongInfo songInfo = SongHelper.GetArtistTitleFromFileName(newFileName);
+            newFileName = String.Format("{0}{1}{2}{1}{3}", 
+                                            songInfo.Artist, 
                                             settings.NewSeparator, 
                                             Constants.ARTIST_TITLE_SEPARATOR,
                                             songInfo.Title);
-
-            Console.WriteLine(newFileName);
 
             return newFileName;
         }
@@ -87,47 +86,5 @@ namespace MP3Tools
             return withoutSpecialCharacters;
         }
 
-        private string RenameFile(string originalFullPath, string newFileName)
-        {
-            string directory = Path.GetDirectoryName(originalFullPath);
-
-            string newFullPath = Path.Combine(directory, newFileName);
-
-            File.Move(originalFullPath, newFullPath);
-
-            return newFullPath;
-        }
-
-        public static SongInfo GetArtistTitleFromFileName(string fileName)
-        {
-            string artist = null;
-            string title = null;
-
-            char[] separator = { Constants.ARTIST_TITLE_SEPARATOR };
-            string[] elements = fileName.Split(separator, 2);
-
-            artist = elements[0].Trim();
-
-            if (elements.Length > 1)
-            {
-                title = elements[1].Trim();
-            }
-            
-
-            SongInfo songInfo = new SongInfo(artist, title);
-            return songInfo;
-        }
-
-        private static void SetArtistAndTitleTags(string fileName, string artist, string title)
-        {
-            TagLib.File f = TagLib.File.Create(fileName);
-
-            f.Tag.Clear();
-
-            f.Tag.Performers = new string[] { artist };
-            f.Tag.Title = title;
-
-            f.Save();
-        }
     }
 }

@@ -96,6 +96,19 @@ namespace MP3Tools
             DragMove();
         }
 
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            IList<FileItem> filesToModify = fileItems.Where(f => f.Processed == ProcessState.NotYet).ToList();
+            
+            Task task = Task.Run(() => ModifyFiles(filesToModify));
+        }
+
+        private void ModifyFiles(IList<FileItem> files)
+        {
+            FileModifier fm = new FileModifier();
+            fm.ModifyAll(files);
+        }
+
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             foreach (var item in listView1.SelectedItems)

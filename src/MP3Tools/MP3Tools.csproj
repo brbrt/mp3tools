@@ -91,12 +91,13 @@
     <Compile Include="Constants.cs" />
     <Compile Include="FileItem.cs" />
     <Compile Include="FileItemList.cs" />
+    <Compile Include="FileModifier.cs" />
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="FileNameAnalyzer.cs" />
+    <Compile Include="Helper\SongHelper.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="SettingsManager.cs" />
-    <Compile Include="SongInfo.cs" />
     <Compile Include="WRKR.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

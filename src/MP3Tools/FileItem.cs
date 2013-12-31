@@ -78,6 +78,11 @@ namespace MP3Tools
             get { return System.IO.Path.GetDirectoryName(fullPath); }
         }
 
+        public bool IsNameChanged
+        {
+            get { return NewName != FileName; }
+        }
+
 
         protected void OnPropertyChanged(string info)
         {
