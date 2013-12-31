@@ -114,17 +114,24 @@
         
         <Image Height="120" HorizontalAlignment="Right" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="118" Source="/MP3Tools;component/Images/463104592.png" Margin="0,12,1098,0" />
         <Label Content="X" Height="28" HorizontalAlignment="Left" Margin="1202,0,0,0" Name="label1" VerticalAlignment="Top" Width="26" HorizontalContentAlignment="Right" PreviewMouseLeftButtonDown="label1_PreviewMouseLeftButtonDown" FontSize="14" />
-        <Button Content="Cancel selected files" HorizontalAlignment="Left" Margin="12,176,0,0" Name="cancelButton" Width="113" Background="#FFFF143C" Foreground="White" FontSize="10" FontWeight="Bold" Click="cancelButton_Click" Height="35" VerticalAlignment="Top" />
+        <Button Content="Stop" HorizontalAlignment="Left" Margin="12,204,0,0" Name="cancelButton" Width="113" Background="#FFFF143C" Foreground="White" FontSize="10" FontWeight="Bold" Click="cancelButton_Click" Height="35" VerticalAlignment="Top" />
         
         <ListView Height="239" HorizontalAlignment="Left" Margin="133,12,0,0" Name="listView1" VerticalAlignment="Top" Width="1067" ItemsSource="{Binding}" FontSize="10" Background="White">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="90" Header="Processed" DisplayMemberBinding="{Binding Path=Processed}"/>
-                    <GridViewColumn Width="400" Header="OriginalName" DisplayMemberBinding="{Binding Path=FileName}"/>
-                    <GridViewColumn Width="300" Header="NewName" DisplayMemberBinding="{Binding Path=NewName}"/>
-                    <GridViewColumn Width="400" Header="Path" DisplayMemberBinding="{Binding Path=Path}"/>
+                    <GridViewColumn Width="350" Header="OriginalName" DisplayMemberBinding="{Binding Path=FileName}"/>
+                    <GridViewColumn Width="350" Header="NewName">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding NewName}" Width="350" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="350" Header="Path" DisplayMemberBinding="{Binding Path=Path}"/>
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Background="#FF519A7A" Content="Start" FontSize="10" FontWeight="Bold" Foreground="White" Height="35" HorizontalAlignment="Left" Margin="12,163,0,0" Name="startButton" VerticalAlignment="Top" Width="113" />
     </Grid>
 </Window>
