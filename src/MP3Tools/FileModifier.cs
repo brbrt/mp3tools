@@ -50,10 +50,12 @@ namespace MP3Tools
                 }
 
                 fileItem.Processed = ProcessState.Done;
+                Log(fileItem);
             }
             catch (Exception ex)
             {
                 fileItem.Processed = ProcessState.Error;
+                Log(fileItem, ex);
             }
         }
 
@@ -77,6 +79,37 @@ namespace MP3Tools
             f.Tag.Title = songInfo.Title;
 
             f.Save();
+        }
+
+
+        private void Log(FileItem file, Exception ex = null)
+        {
+            StringBuilder logMessage = new StringBuilder();
+
+            logMessage.Append("Path: " + file.Path + "\n");
+            logMessage.Append("Original name: " + file.FileName + "\n");
+            logMessage.Append("New name     : " + file.NewName + "\n");
+            logMessage.Append("Status: " + file.Processed + "\n");
+            logMessage.Append("Date: " + DateTime.Now.ToString() + "\n");
+
+            if (ex != null)
+            {
+                logMessage.Append("Exception: " + ex.Message + "\n");
+                logMessage.Append("StackTrace: " + ex.StackTrace + "\n");
+            }
+
+            logMessage.Append("------------------------------------------------------------\n");
+
+
+            WriteLog(logMessage.ToString());
+        }
+
+        private void WriteLog(string message)
+        {
+            using (StreamWriter logger = File.AppendText(LOG_FILE))
+            {
+                logger.Write(message);
+            }
         }
     }
 }
