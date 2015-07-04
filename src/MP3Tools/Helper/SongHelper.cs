@@ -23,7 +23,6 @@ namespace MP3Tools.Helper
                 title = elements[1].Trim();
             }
 
-
             SongInfo songInfo = new SongInfo(artist, title);
             return songInfo;
         }

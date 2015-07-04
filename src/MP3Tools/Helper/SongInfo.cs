@@ -18,5 +18,11 @@ namespace MP3Tools.Helper
             this.Artist = artist;
             this.Title = title;
         }
+
+        public string FormatAsFileName(string whiteSpace)
+        {
+            return String.Format("{0}{1}{2}{1}{3}", Artist, whiteSpace, Constants.ARTIST_TITLE_SEPARATOR, Title);
+        }
+
     }
 }

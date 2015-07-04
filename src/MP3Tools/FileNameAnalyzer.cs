@@ -37,13 +37,8 @@ namespace MP3Tools
 
 
             SongInfo songInfo = SongHelper.GetArtistTitleFromFileName(newFileName);
-            newFileName = String.Format("{0}{1}{2}{1}{3}", 
-                                            songInfo.Artist, 
-                                            settings.NewSeparator, 
-                                            Constants.ARTIST_TITLE_SEPARATOR,
-                                            songInfo.Title);
 
-            return newFileName;
+            return songInfo.FormatAsFileName(settings.NewSeparator);
         }
 
         private string SuggestNiceFileName(string originalName)
@@ -52,38 +47,26 @@ namespace MP3Tools
 
             string[] elements = file.Split(settings.SeparatorsToFind, StringSplitOptions.RemoveEmptyEntries);
 
-            StringBuilder sb = new StringBuilder(file.Length);
+            IEnumerable<string> validElements = elements.Where(e => !IsInvalidElement(e));
 
-            string current;
-            for (int i = 0; i < elements.Length; i++)
-            {
-                current = elements[i];
-
-                bool contains = false;
-                foreach (string pattern in settings.PatternsToFind)
-                {
-                    if (current.Contains(pattern))
-                    {
-                        contains = true;
-                        break;
-                    }
-                }
-
-                if (!contains)
-                {
-                    if (i != 0)
-                    {
-                        sb.Append(settings.NewSeparator);
-                    }
-
-                    sb.Append(current);
-                }
-            }
-
-            string withoutAccents = StringHelper.ReplaceAccents(sb.ToString());
+            string validFileName = String.Join(settings.NewSeparator, validElements);
+            string withoutAccents = StringHelper.ReplaceAccents(validFileName);
             string withoutSpecialCharacters = StringHelper.RemoveSpecialCharacters(withoutAccents);
 
             return withoutSpecialCharacters;
+        }
+
+        private bool IsInvalidElement(string fileNameElement)
+        {
+            foreach (string pattern in settings.PatternsToFind)
+            {
+                if (fileNameElement.Contains(pattern))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
     }

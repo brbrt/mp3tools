@@ -8,7 +8,7 @@ namespace MP3Tools
 {
     public class StringHelper
     {
-        private static bool[] _lookup;
+        private static readonly bool[] _lookup;
 
         static StringHelper()
         {
