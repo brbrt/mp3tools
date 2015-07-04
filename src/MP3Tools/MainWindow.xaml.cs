@@ -87,7 +87,6 @@ namespace MP3Tools
 
         private void label1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            WRKR.Stop();
             this.Close();
         }
 

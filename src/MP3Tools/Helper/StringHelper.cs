@@ -76,7 +76,9 @@ namespace MP3Tools
             foreach (char c in normalizedString)
             {
                 if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
                     sb.Append(c);
+                }
             }
 
             return sb.ToString();
