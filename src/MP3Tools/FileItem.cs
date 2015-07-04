@@ -6,9 +6,6 @@ using System.ComponentModel;
 
 namespace MP3Tools
 {
-    public enum ProcessState { Error, Cancelled, NotYet, Processing, Done};
-
-
     public class FileItem : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
