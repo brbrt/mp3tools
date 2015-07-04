@@ -15,9 +15,9 @@ namespace MP3Tools
         private readonly Settings settings;
 
 
-        public FileModifier() 
+        public FileModifier(Settings settings) 
         {
-            this.settings = SettingsManager.LoadSettingsFromFile();
+            this.settings = settings;
         }
 
 

@@ -12,9 +12,9 @@ namespace MP3Tools
         private readonly Settings settings;
 
 
-        public FileNameAnalyzer()
+        public FileNameAnalyzer(Settings settings)
         {
-            this.settings = SettingsManager.LoadSettingsFromFile();
+            this.settings = settings;
         }
 
 
@@ -47,7 +47,8 @@ namespace MP3Tools
 
             string[] elements = file.Split(settings.SeparatorsToFind, StringSplitOptions.RemoveEmptyEntries);
 
-            IEnumerable<string> validElements = elements.Where(e => !IsInvalidElement(e));
+            IEnumerable<string> validElements = elements
+                .Where(e => !ContainsPattern(e, settings.PatternsToFind));
 
             string validFileName = String.Join(settings.NewSeparator, validElements);
             string withoutAccents = StringHelper.ReplaceAccents(validFileName);
@@ -56,17 +57,10 @@ namespace MP3Tools
             return withoutSpecialCharacters;
         }
 
-        private bool IsInvalidElement(string fileNameElement)
+        private bool ContainsPattern(string fileNameElement, string[] patterns)
         {
-            foreach (string pattern in settings.PatternsToFind)
-            {
-                if (fileNameElement.Contains(pattern))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return patterns
+                    .Any(p => fileNameElement.Contains(p));
         }
 
     }

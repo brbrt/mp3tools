@@ -9,6 +9,13 @@ namespace MP3Tools
 {
     public class DroppedFilesProcessor
     {
+        private readonly Settings settings;
+
+        public DroppedFilesProcessor(Settings settings)
+        {
+            this.settings = settings;
+        }
+
         public IList<FileItem> Process(IList<string> droppedFiles)
         {
             IList<string> allFiles = FileHelper.GetAllFilesFrom(droppedFiles);
@@ -17,7 +24,7 @@ namespace MP3Tools
 
 
             // Analyze all MP3-s and suggest a nice new filename.
-            FileNameAnalyzer fna = new FileNameAnalyzer();
+            FileNameAnalyzer fna = new FileNameAnalyzer(settings);
 
             IList<FileItem> result = new List<FileItem>();
 
