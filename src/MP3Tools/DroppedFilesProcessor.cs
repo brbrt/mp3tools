@@ -18,27 +18,18 @@ namespace MP3Tools
 
         public IList<FileItem> Process(IList<string> droppedFiles)
         {
-            IList<string> allFiles = FileHelper.GetAllFilesFrom(droppedFiles);
-
-            IList<string> mp3Files = FileHelper.FilterFilesByExtension(allFiles, Constants.MP3_EXTENSION);
-
-
-            // Analyze all MP3-s and suggest a nice new filename.
-            FileNameAnalyzer fna = new FileNameAnalyzer(settings);
-
-            IList<FileItem> result = new List<FileItem>();
-
-            foreach (string file in mp3Files)
-            {
-                string newName = fna.Analyze(file);
-
-                FileItem fileItem = new FileItem(file, newName);
-                result.Add(fileItem);
-            }
-
-            return result;
+             return FileHelper.GetAllFilesFrom(droppedFiles)
+                 .Where(f => FileHelper.HasExtension(f, Constants.MP3_EXTENSION))
+                 .Select(f => ProcessItem(f))                
+                 .ToList();
         }
 
+        private FileItem ProcessItem(string originalFileName)
+        {
+            FileNameAnalyzer fna = new FileNameAnalyzer(settings);
+            string newFileName = fna.SuggestNiceFileName(originalFileName);
 
+            return new FileItem(originalFileName, newFileName);
+        }
     }
 }

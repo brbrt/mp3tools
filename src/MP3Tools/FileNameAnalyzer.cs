@@ -11,37 +11,19 @@ namespace MP3Tools
     {
         private readonly Settings settings;
 
-
         public FileNameAnalyzer(Settings settings)
         {
             this.settings = settings;
         }
 
-
-        public List<string> AnalyzeAll(IList<string> fileNames)
+        public string SuggestNiceFileName(string fileName)
         {
-            List<string> result = new List<string>();
-
-            foreach (string fileName in fileNames)
-            {
-                string newFileName = Analyze(fileName);
-                result.Add(newFileName);
-            }
-
-            return result;
-        }
-
-        public string Analyze(string fileName)
-        {
-            string newFileName = SuggestNiceFileName(fileName);
-
-
-            SongInfo songInfo = SongHelper.GetArtistTitleFromFileName(newFileName);
-
+            string cleanFileName = CleanFileName(fileName);
+            SongInfo songInfo = SongHelper.GetArtistTitleFromFileName(cleanFileName);
             return songInfo.FormatAsFileName(settings.NewSeparator);
         }
 
-        private string SuggestNiceFileName(string originalName)
+        private string CleanFileName(string originalName)
         {
             string file = Path.GetFileNameWithoutExtension(originalName);
 

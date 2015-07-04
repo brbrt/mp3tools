@@ -17,9 +17,9 @@ namespace MP3Tools
 
         public FileItem() {}
 
-        public FileItem(string fileName, string newName)
+        public FileItem(string fullPath, string newName)
         {
-            FullPath = fileName;            
+            FullPath = fullPath;            
             NewName = newName;
             Processed = ProcessStatus.Ready;
         }

@@ -47,27 +47,6 @@ namespace MP3Tools.Helper
             return files;
         }
 
-        public static IList<string> FilterFilesByExtension(IList<string> files, string extension)
-        {
-            #region Check arguments.
-
-            if (files == null)
-            {
-                throw new ArgumentNullException("files");
-            }
-
-            if (string.IsNullOrWhiteSpace(extension))
-            {
-                throw new ArgumentException("extension");
-            }
-
-            #endregion
-
-            return files
-                .Where(f => HasExtension(f, extension))
-                .ToList();
-        }
-
         public static bool HasExtension(string fileName, string extension) {
             return String.Compare(System.IO.Path.GetExtension(fileName), extension, true) == 0;
         }
