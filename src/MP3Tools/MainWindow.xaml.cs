@@ -70,7 +70,7 @@ namespace MP3Tools
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            IList<FileItem> filesToModify = fileItems.Where(f => f.Processed == ProcessState.NotYet).ToList();
+            IList<FileItem> filesToModify = fileItems.Where(f => f.Processed == ProcessStatus.Ready).ToList();
             
             Task task = Task.Run(() => ModifyFiles(filesToModify));
         }
@@ -87,9 +87,9 @@ namespace MP3Tools
             {
                 FileItem fi = item as FileItem;
 
-                if (fi.Processed == ProcessState.NotYet)
+                if (fi.Processed == ProcessStatus.Ready)
                 {
-                    fi.Processed = ProcessState.Cancelled;
+                    fi.Processed = ProcessStatus.Cancelled;
                 }
             }
         }

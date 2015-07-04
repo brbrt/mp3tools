@@ -11,7 +11,7 @@ namespace MP3Tools
         public event PropertyChangedEventHandler PropertyChanged;
 
         private string fullPath;
-        private ProcessState processed;
+        private ProcessStatus processed;
         private string newName;
 
 
@@ -21,7 +21,7 @@ namespace MP3Tools
         {
             FullPath = fileName;            
             NewName = newName;
-            Processed = ProcessState.NotYet;
+            Processed = ProcessStatus.Ready;
         }
 
 
@@ -38,7 +38,7 @@ namespace MP3Tools
             }
         }
 
-        public ProcessState Processed
+        public ProcessStatus Processed
         {
             get
             {

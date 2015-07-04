@@ -31,7 +31,7 @@ namespace MP3Tools
 
         public void Modify(FileItem fileItem)
         {
-            fileItem.Processed = ProcessState.Processing;
+            fileItem.Processed = ProcessStatus.Processing;
 
             try
             {
@@ -49,12 +49,12 @@ namespace MP3Tools
                     SetArtistAndTitleTags(fullPath, songInfo);
                 }
 
-                fileItem.Processed = ProcessState.Done;
+                fileItem.Processed = ProcessStatus.Done;
                 Log(fileItem);
             }
             catch (Exception ex)
             {
-                fileItem.Processed = ProcessState.Error;
+                fileItem.Processed = ProcessStatus.Error;
                 Log(fileItem, ex);
             }
         }

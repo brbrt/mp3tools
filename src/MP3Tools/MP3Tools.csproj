@@ -96,7 +96,7 @@
     <Compile Include="FileNameAnalyzer.cs" />
     <Compile Include="Helper\SongHelper.cs" />
     <Compile Include="Helper\SongInfo.cs" />
-    <Compile Include="ProcessState.cs" />
+    <Compile Include="ProcessStatus.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="SettingsManager.cs" />
