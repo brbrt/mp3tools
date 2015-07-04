@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace MP3Tools
 {
     class FileItemList : ObservableCollection<FileItem>
     {
-        public bool ContainsAlready(string fileName)
-        {
-            bool contains = false;
 
+        public void AddNewItems(IEnumerable<FileItem> collection)
+        {
             lock (this)
             {
-                foreach (FileItem fi in this)
+                foreach (var item in collection)
                 {
-                    if (fi.FullPath == fileName)
+                    if (!Items.Contains(item))
                     {
-                        contains = true;
-                        break;
+                        Items.Add(item);
                     }
                 }
             }
 
-            return contains;
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
+
     }
 }

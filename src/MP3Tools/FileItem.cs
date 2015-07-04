@@ -89,5 +89,16 @@ namespace MP3Tools
             }
         }
 
+        public override bool Equals(object obj)
+        {
+            FileItem other = obj as FileItem;
+            if (other == null)
+            {
+                return false;
+            }
+
+            return this.fullPath == other.fullPath;
+        }
+
     }
 }

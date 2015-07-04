@@ -46,17 +46,9 @@ namespace MP3Tools
 
                 // Process the dropped files in the background.
                 Task<IList<FileItem>> task = Task.Run<IList<FileItem>>(() => RunAnalyzeDroppedFiles(droppedItems));
-                IList<FileItem> taskResult = await task;
+                IList<FileItem> analyzedFiles = await task;
 
-
-                // Check the dropped files, we worry about only the new ones (previously dropped files won't be displayed again).
-                foreach (FileItem item in taskResult)
-                {
-                    if (!fileItems.Contains(item))
-                    {
-                        fileItems.Add(item);
-                    }
-                }
+                fileItems.AddNewItems(analyzedFiles);
             }
         }
 
