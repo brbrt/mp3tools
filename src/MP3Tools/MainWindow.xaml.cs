@@ -74,15 +74,10 @@ namespace MP3Tools
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var item in listView1.SelectedItems)
-            {
-                FileItem fi = item as FileItem;
-
-                if (fi.Processed == ProcessStatus.Ready)
-                {
-                    fi.Processed = ProcessStatus.Cancelled;
-                }
-            }
+            fileItems
+                .Where(fi => fi.Processed == ProcessStatus.Ready)
+                .ToList()
+                .ForEach(fi => fi.Processed = ProcessStatus.Cancelled);
         }
 
     }
