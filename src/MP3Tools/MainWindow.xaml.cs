@@ -62,27 +62,8 @@ namespace MP3Tools
 
         private IList<FileItem> RunAnalyzeDroppedFiles(IList<string> droppedFiles)
         {
-            // Select all files recursiveley, but only the MP3 files.
             DroppedFilesProcessor dfp = new DroppedFilesProcessor();
-            IList<string> mp3Files = dfp.Process(droppedFiles);
-
-
-
-            // Analyze all MP3-s and suggest a nice new filename.
-
-            FileNameAnalyzer fna = new FileNameAnalyzer();
-
-            IList<FileItem> result = new List<FileItem>();
-
-            foreach (string file in mp3Files)
-            {
-                string newName = fna.Analyze(file);
-
-                FileItem fileItem = new FileItem() { FullPath = file, NewName = newName, Processed = ProcessState.NotYet };
-                result.Add(fileItem);
-            }
-
-            return result;
+            return dfp.Process(droppedFiles);
         }
 
         private void label1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

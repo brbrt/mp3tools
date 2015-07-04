@@ -9,30 +9,27 @@ namespace MP3Tools
 {
     public class DroppedFilesProcessor
     {
-        public List<string> Process(IList<string> droppedFiles)
+        public IList<FileItem> Process(IList<string> droppedFiles)
         {
-            // Select all dropped files.
-            List<string> allFiles = new List<string>();
+            IList<string> allFiles = FileHelper.GetAllFilesFrom(droppedFiles);
 
-            foreach (string f in droppedFiles)
+            IList<string> mp3Files = FileHelper.FilterFilesByExtension(allFiles, Constants.MP3_EXTENSION);
+
+
+            // Analyze all MP3-s and suggest a nice new filename.
+            FileNameAnalyzer fna = new FileNameAnalyzer();
+
+            IList<FileItem> result = new List<FileItem>();
+
+            foreach (string file in mp3Files)
             {
-                if (FileHelper.IsDirectory(f))
-                {
-                    // If the dropped item is a directory, get all files from it recursively.
+                string newName = fna.Analyze(file);
 
-                    IList<string> innerFiles = FileHelper.GetAllFilesFromFolder(f);
-                    allFiles.AddRange(innerFiles);
-                }
-                else
-                {
-                    allFiles.Add(f);
-                }
+                FileItem fileItem = new FileItem(file, newName);
+                result.Add(fileItem);
             }
 
-            // We only want to work with MP3 files, other fiels will be ignored.
-            List<string> mp3Files = FileHelper.SelectFilesWithExtension(allFiles, Constants.MP3_EXTENSION);
-
-            return mp3Files;
+            return result;
         }
 
 

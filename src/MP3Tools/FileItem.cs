@@ -20,11 +20,11 @@ namespace MP3Tools
 
         public FileItem() {}
 
-        public FileItem(string fileName)
+        public FileItem(string fileName, string newName)
         {
-            FullPath = fileName;
+            FullPath = fileName;            
+            NewName = newName;
             Processed = ProcessState.NotYet;
-            NewName = String.Empty;
         }
 
 
@@ -91,5 +91,6 @@ namespace MP3Tools
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
+
     }
 }
