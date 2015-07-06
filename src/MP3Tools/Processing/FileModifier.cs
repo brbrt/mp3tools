@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MP3Tools.Helper;
+using MP3Tools.Model;
 
-namespace MP3Tools
+namespace MP3Tools.Processing
 {
     public class FileModifier
     {

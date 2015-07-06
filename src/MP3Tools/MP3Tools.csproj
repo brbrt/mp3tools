@@ -89,14 +89,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants.cs" />
-    <Compile Include="FileItem.cs" />
-    <Compile Include="FileItemList.cs" />
-    <Compile Include="FileModifier.cs" />
+    <Compile Include="Model\FileItem.cs" />
+    <Compile Include="Model\FileItemList.cs" />
+    <Compile Include="Processing\FileModifier.cs" />
     <Compile Include="Helper\FileHelper.cs" />
-    <Compile Include="FileNameAnalyzer.cs" />
+    <Compile Include="Processing\FileNameAnalyzer.cs" />
     <Compile Include="Helper\SongHelper.cs" />
     <Compile Include="Helper\SongInfo.cs" />
-    <Compile Include="ProcessStatus.cs" />
+    <Compile Include="Model\ProcessStatus.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="SettingsManager.cs" />
@@ -114,7 +114,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DroppedFilesProcessor.cs" />
+    <Compile Include="Processing\DroppedFilesProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

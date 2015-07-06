@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using MP3Tools.Helper;
 
-namespace MP3Tools
+namespace MP3Tools.Processing
 {
     public class FileNameAnalyzer
     {

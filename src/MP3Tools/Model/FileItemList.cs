@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace MP3Tools
+namespace MP3Tools.Model
 {
     class FileItemList : ObservableCollection<FileItem>
     {

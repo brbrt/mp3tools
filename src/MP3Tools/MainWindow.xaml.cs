@@ -18,6 +18,8 @@ using System.Windows.Interop;
 using System.Windows.Threading;
 using System.Collections;
 using System.Threading.Tasks;
+using MP3Tools.Processing;
+using MP3Tools.Model;
 
 namespace MP3Tools
 {

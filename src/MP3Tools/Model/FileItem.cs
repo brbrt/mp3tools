@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace MP3Tools
+namespace MP3Tools.Model
 {
     public class FileItem : INotifyPropertyChanged
     {
