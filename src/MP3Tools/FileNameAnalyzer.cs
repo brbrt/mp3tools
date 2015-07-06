@@ -42,7 +42,7 @@ namespace MP3Tools
         private bool ContainsPattern(string fileNameElement, string[] patterns)
         {
             return patterns
-                    .Any(p => fileNameElement.Contains(p));
+                    .Any(p => fileNameElement.ToLower().Contains(p.ToLower()));
         }
 
     }

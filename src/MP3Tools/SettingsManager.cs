@@ -17,40 +17,22 @@ namespace MP3Tools
         {
             defaultSettings = new Settings();
             defaultSettings.SeparatorsToFind = new char[] { ' ', '_' };
-            defaultSettings.PatternsToFind = new string[] { "www.",
-                                                            "WWW.",
-                                                            "Www.",
-                                                            ".info",
-                                                            ".INFO",
-                                                            ".Info",
-                                                            ".ro",
-                                                            ".RO",
-                                                            ".Ro",
-                                                            ".pl",
-                                                            ".PL",
-                                                            ".Pl",
-                                                            ".com",
-                                                            ".COM",
-                                                            ".Com",
-                                                            ".net",
-                                                            ".NET",
-                                                            ".Net",
-                                                            ".ru",
-                                                            ".RU",
-                                                            ".Ru",
-                                                            ".hu",
-                                                            ".HU",
-                                                            ".Hu",
-                                                            ".org",
-                                                            ".ORG",
-                                                            ".Org",
-	                                                        ".eu",
-                                                            ".EU",
-                                                            ".Eu",
-	                                                        ".in",
-                                                            ".IN",
-                                                            ".In"
-                                                };
+            defaultSettings.PatternsToFind = new string[] { 
+                "www.",
+                ".info",
+                ".ro",
+                ".pl",
+                ".Com",
+                ".net",
+                ".ru",
+                ".hu",
+                ".org",
+	            ".eu",
+	            ".in",
+                "320",
+                "kbps",
+                "release"
+            };
             defaultSettings.SetID3Tags = true;
             defaultSettings.NewSeparator = " ";
         }
